@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BaseTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:local="clr-namespace:FutebolAPP.App"
+                      x:Class="FutebolAPP.App.LigaDetalhePage">
+    <!--Pages can be added as references or inline-->
+    <ContentPage Title="Classificação">
+        <ContentPage.Content>
+            <StackLayout Orientation="Vertical">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="" Grid.Row="0" Grid.Column="0"></Label>
+                    <Label Text="PG" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                    <Label Text="J" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                    <Label Text="V" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                    <Label Text="D" Grid.Row="0" Grid.Column="4" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                    <Label Text="GP" Grid.Row="0" Grid.Column="5" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                    <Label Text="SG" Grid.Row="0" Grid.Column="6" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                </Grid>
+                <ListView HasUnevenRows="True" ItemsSource="{Binding Classificacao}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="30" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                                        <Label Text="{Binding position}"></Label>
+                                        <Label Text="º"></Label>
+                                        <Label Text="{Binding teamName}"></Label>
+                                    </StackLayout>
+                                    <Label Text="{Binding points}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding playedGames}" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding wins}" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding draws}" Grid.Row="0" Grid.Column="4" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding goals}" Grid.Row="0" Grid.Column="5" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding goalDifference}" Grid.Row="0" Grid.Column="6" HorizontalTextAlignment="Center"></Label>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Rodadas">
+        <ContentPage.Content>
+            <StackLayout Orientation="Vertical">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="&lt;" Grid.Row="0" Grid.Column="0" Command="{Binding ShowRodadaAnteriorCommand}"></Button>
+                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center">
+                        <Label Text="Rodada" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                        <Label Text="{Binding RodadaAtual}" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                    </StackLayout>
+                    <Button Text=">" Grid.Row="0" Grid.Column="2" Command="{Binding ShowProximaRodadaCommand}"></Button>
+                </Grid>
+                <ListView ItemsSource="{Binding JogosRodadaAtual}" HasUnevenRows="True" HorizontalOptions="CenterAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding homeTeamName}" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End"></Label>
+                                    <Label Text="{Binding result.goalsHomeTeam}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="X" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding result.goalsAwayTeam}" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding awayTeamName}" Grid.Row="0" Grid.Column="4" HorizontalTextAlignment="Start"></Label>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</local:BaseTabbedPage>
+    
